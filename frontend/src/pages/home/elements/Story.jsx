@@ -1,13 +1,22 @@
+import { useState } from "react"
 import style from "../styles/storys.module.css"
 
-function Story ({list}) {
+let allStorys = {}
+
+function Storys ({list}) {
 
     const storys = []
 
+    allStorys = {}
+
+    let index = 0
+
     for ( let item of list ) {
+        allStorys[index] = item
         storys.push(
-            <img className={style.foto_story} src={item[0]} alt="" />
+            <Story index = {index} />
         )
+        index++
     }
 
     return (
@@ -17,5 +26,22 @@ function Story ({list}) {
     )
 }
 
+function Story ({index}) {
 
-export default Story
+    console.log("storys : ",allStorys[index]);
+    
+
+    return (
+        <img onClick={()=> abrirStory(index)} className={style.foto_story} src={allStorys[index].foto_perfil} alt="" />
+    )
+
+}
+
+function abrirStory (index) {
+
+    console.log(allStorys[index]);
+
+}
+
+
+export default Storys

@@ -1,89 +1,65 @@
-import Post from "./elements/Post"
-import styles from "./styles/home.module.css"
-import img from "../../img/perfil.jpeg"
-import Story from "./elements/Story"
-import ButtonHomePage from "./elements/ButtonHomePage"
-import ButtonVideosPage from "./elements/ButtonVideosPage"
-import { useState } from "react"
+import React, { useState, useEffect } from "react";
+import Post from "./elements/Post";
+import styles from "./styles/home.module.css";
+import Story from "./elements/Story";
+import ButtonHomePage from "./elements/ButtonHomePage";
+import ButtonVideosPage from "./elements/ButtonVideosPage";
+import services from "../../services/services";
+import VideoCarousel from "./elements/VideoCarousel";
 
 
-const posts = [
-    {
-        photo : img,
-        name : "Junior",
-        content : img
-    },
-    {
-        photo : img,
-        name : "Junior",
-        content : img
-    }
-]
+const Home = () => {
+    const [posts, setPosts] = useState([]);
+    const [storys, setStorys] = useState([]);
+    const [home, setHome] = useState(true);
+    const [video, setVideo] = useState(false);
+    let videos = []
 
-const storys = [
-    [img]
-]
+    useEffect(() => {
+        const fetchData = async () => {
 
+            const fetchedPosts = await services.getListPosts();
+            const fetchedStorys = await services.getListStorys();
+            const fetchVideos = await services.getListVideos()
 
-function Home () {
+            setPosts(fetchedPosts);
+            setStorys(fetchedStorys);
+            videos = fetchVideos
 
-    const allPosts = []
+        };
 
-    for ( let post of posts ) {
-        console.log(post);
-        
-        allPosts.push(
-            <Post photo={post.photo} name={post.name} content={post.content}/>
-        )
-    }    
+        fetchData();
+    }, []);
 
-    const [home, setHome] = useState(true)
-    const [video, setVideo] = useState(false)
+    const allPosts = posts.map((post) => (
+        <Post object = {post} />
+    ));
 
-    function moveToPage (page) {
+    const moveToPage = (page) => {
+        setHome(page === "home");
+        setVideo(page === "video");
+    };
 
-        setHome(false)
-        setVideo(false)  
-                
-
-        if ( page == "home" ) {
-            setHome(true)
-        }
-
-        if ( page == "video" ) {
-            setVideo(true)
-        }
-
-    }
-
-    return(
-        <div className={styles.container_home} >
-            <div className={styles.container_outros} >
-                <ButtonHomePage onClick={()=> moveToPage("home")}/>
-                <ButtonVideosPage onClick={()=> moveToPage("video")}/>
+    return (
+        <div className={styles.container_home}>
+            <div className={styles.container_outros}>
+                <ButtonHomePage onClick={() => moveToPage("home")} />
+                <ButtonVideosPage onClick={() => moveToPage("video")} />
             </div>
-            {
-                home && (
-                    <div className={styles.container_posts}>
-                        <Story list = {storys}/>
-                        {allPosts}
-                    </div>
-                ) 
-            }
-            {
-                video && (
-                    <div className={styles.container_posts}>
-                        <div style={{color:"white"}}>
-                            Video
-                        </div>
-                    </div>
-                )
-            }
-            
+            {home && (
+                <div className={styles.container_posts}>
+                    <Story list={storys} />
+                    {allPosts}
+                    <div className={styles.container_display_storys} ></div>
+                </div>
+            )}
+            {video && (
+                <div className={styles.container_posts}>
+                    <VideoCarousel videos={videos} />
+                </div>
+            )}
         </div>
-    )
+    );
+};
 
-}
-
-
-export default Home
+export default Home;

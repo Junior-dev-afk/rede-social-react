@@ -6,6 +6,7 @@
     border-radius: 5px;
     padding: 20px;
     margin-block: 20px;
+    color: rgb(194, 194, 194);
 }
 
 .container_post_foto{
@@ -13,7 +14,6 @@
     width: 100%;
     justify-content: start;
     align-items: center;
-    color: rgb(194, 194, 194);
 }
 
 .foto_post{
@@ -25,10 +25,38 @@
     margin-right: 10px;
 }
 
+.container_post_conteudo{
+    width: 100%;
+    height: auto;
+    margin-block: 20px;
+    position: relative;
+    z-index: 0;
+}
+
 .post_conteudo{
     width: 100%;
     height: auto;
     margin-block: 20px;
+}
+
+.button_post_voltar{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 60%;
+    border: none;
+    background-color: transparent;
+}
+
+.button_post_proximo{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 60%;
+    right: 0;
+    border: none;
+    background-color: transparent;
 }
 
 .container_buttons_post{
@@ -37,6 +65,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    margin-top: 20px;
 }
 
 .button_post{
@@ -51,4 +80,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.container_indexes{
+    position: absolute;
+    display: flex;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.index{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgba(50, 50, 50, 0.664);
+    margin-inline: 2px;
 }
