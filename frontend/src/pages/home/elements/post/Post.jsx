@@ -1,4 +1,4 @@
-import style from "../styles/post.module.css"
+import style from "../../styles/post.module.css"
 import LikeButton from "./LikeButton"
 import ComentButton from "./ComentButton"
 import SendButton from "./SendButton"

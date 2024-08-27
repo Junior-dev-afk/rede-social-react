@@ -1,5 +1,5 @@
-import style from "../styles/post.module.css"
-import comp from "../../../img/compartilhar.png"
+import style from "../../styles/post.module.css"
+import comp from "../../../../img/compartilhar.png"
 
 
 function SendButton () {

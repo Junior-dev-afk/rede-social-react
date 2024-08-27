@@ -1,5 +1,5 @@
-import style from "../styles/post.module.css"
-import coracao from "../../../img/coracao.png"
+import style from "../../styles/post.module.css"
+import coracao from "../../../../img/coracao.png"
 
 
 function LikeButton () {

@@ -1,5 +1,5 @@
-import style from "../styles/post.module.css"
-import coment from "../../../img/comentario.png"
+import style from "../../styles/post.module.css"
+import coment from "../../../../img/comentario.png"
 
 
 function ComentButton () {

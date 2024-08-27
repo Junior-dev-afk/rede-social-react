@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Post from "./elements/Post";
+import Post from "./elements/post/Post";
 import styles from "./styles/home.module.css";
-import Story from "./elements/Story";
+import Story from "./elements/story/Storys";
 import ButtonHomePage from "./elements/ButtonHomePage";
 import ButtonVideosPage from "./elements/ButtonVideosPage";
 import services from "../../services/services";
@@ -9,10 +9,12 @@ import VideoCarousel from "./elements/VideoCarousel";
 
 
 const Home = () => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]); 
     const [storys, setStorys] = useState([]);
+
     const [home, setHome] = useState(true);
     const [video, setVideo] = useState(false);
+    
     let videos = []
 
     useEffect(() => {
@@ -48,9 +50,8 @@ const Home = () => {
             </div>
             {home && (
                 <div className={styles.container_posts}>
-                    <Story list={storys} />
+                    <Story list={storys}/>
                     {allPosts}
-                    <div className={styles.container_display_storys} ></div>
                 </div>
             )}
             {video && (
