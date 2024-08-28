@@ -36,14 +36,28 @@ class Services {
                 user : "Junior",
                 foto_perfil : img,
                 storys : [
-                    img, img
+                    {
+                        content : img,
+                        visualizado : true
+                    }
                 ]
             },
             {
                 user : "Junior",
                 foto_perfil : img,
                 storys : [
-                    img, img
+                    {
+                        content : img,
+                        visualizado : true
+                    },
+                    {
+                        content : coracao,
+                        visualizado : false
+                    },
+                    {
+                        content : img,
+                        visualizado : false
+                    }
                 ]
             }
         ]

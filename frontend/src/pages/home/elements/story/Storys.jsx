@@ -8,7 +8,7 @@ const configs = {
     visible : false,
     index : false,
     allStorys : {},
-    setStatusStory : false
+    setStatusStory : false,
 }
 
 
@@ -17,22 +17,23 @@ function Storys ({list}) {
     configs.allStorys = {}
 
     const [storyAberto, setStatusAberto] = useState(false)
+    const [index, setIndex] = useState(0)
 
     configs.setStatusStory = setStatusAberto
 
-    const storys = gerarStorys(list)
+    const storys = gerarStorys(list, setIndex)
 
     return (
         <div className={style.container_storys}  >
             {storys}
             {storyAberto ? (
-                <ContentStory index={configs.index}/>
+                <ContentStory index={index} mudarIndex={setIndex}/>
             ) : null}
         </div>
     )
 }
 
-function gerarStorys (list) {
+function gerarStorys (list, setIndex) {
 
     const storys = []
 
@@ -43,7 +44,7 @@ function gerarStorys (list) {
         configs.allStorys[index] = item
 
         storys.push(
-            <Story index = {index}/>
+            <Story index = {index} setIndex = {setIndex}/>
         )
 
         index++
